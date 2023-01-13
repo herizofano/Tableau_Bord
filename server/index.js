@@ -14,6 +14,14 @@ import managementRoutes from './routes/managements.js';
 import campagnesRoutes from './routes/campagnes.js';
 
 
+//data import
+
+import User from './models/User.js';
+import Product from './models/Product.js';
+import ProductStat from './models/ProductStat.js';
+
+import { dataUser, dataProduct, dataProductStat } from './datas/index.js'
+
 
 /** CONFIGURATION */
 dotenv.config();
@@ -45,4 +53,9 @@ mongoose.connect(process.env.MONGO_URL,{
     useUnifiedTopology: true,
 }).then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+    /*ONLY ADD DATA ONE TIME*/
+    //Product.insertMany(dataProduct);
+    //ProductStat.insertMany(dataProductStat);
+    //User.insertMany(dataUser);
 }).catch((err) => console.log(`${err} Server not connected`));
